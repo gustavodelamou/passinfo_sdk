@@ -1,5 +1,5 @@
 # PassInfo SDK
-![Alt text](https://bstpgn.com/img/brand/LOGO_BSTP.png "PassInfo Logo")
+# ![PASSEINFO](https://api.passinfo.net/v1/content/logo.png "PassInfo Logo")
 
 A powerful and intuitive Python SDK for seamless integration with the PassInfo API, enabling fast, reliable, and secure message delivery across multiple channels. This SDK simplifies complex messaging operations into clean, maintainable code, making it the ideal choice for businesses seeking robust communication solutions.
 
