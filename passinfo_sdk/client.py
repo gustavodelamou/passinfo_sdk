@@ -121,8 +121,7 @@ class PassInfoSDKClient:
 
         try:
             response = requests.request(method=method, url=url, headers=headers, params=params, json=data, verify=True)
-            print(response.request.headers)
-            print(response.json())
+            # print(response.json())
             return response.json()
         except requests.exceptions.RequestException as e:
             print(e)
@@ -405,4 +404,81 @@ class PassInfoSDKClient:
             raise PassInfoAPIError(status_code=400, message="Batch ID is required.")
         
         return self._make_request(method='GET', endpoint=f'v1/message/get_bulk_status/{batch_id}')
+    
+    def get_sms_count(self) -> int:
+        """Get the remaining SMS credit balance for the account.
+
+        This method queries the current balance of SMS credits available for sending
+        messages through the PassInfo platform. It provides a way to monitor your
+        account's messaging capacity and plan for credit replenishment.
+
+        The method handles API communication errors gracefully, returning 0 if the
+        request fails for any reason (network issues, authentication problems, etc.).
+
+        Returns:
+            int: The number of SMS credits remaining in the account. Returns 0 if
+                the request fails or if there are no credits available.
+
+        Example:
+            >>> client = PassInfoSDKClient('api_key', 'client_id')
+            >>> remaining_credits = client.get_sms_count()
+            >>> print(f"You have {remaining_credits} SMS credits remaining")
+            You have 100 SMS credits remaining
+
+        Note:
+            - Regular balance checks are recommended to ensure sufficient credits
+            - Consider implementing low balance alerts in your application
+            - A return value of 0 could indicate either no credits or an API error
+        """
+        try:
+            response = self._make_request(
+                method='GET',
+                endpoint='v1/user/get_solde'
+            )
+            return response.get('solde', 0)
+        except Exception:
+            return 0
+    
+    def renew_api_key(self):
+        """Generate a new API key for the account.
+
+        This method invalidates the current API key and generates a new one. Use this
+        method when you need to rotate your API credentials for security purposes or
+        when your current API key may have been compromised.
+
+        The new API key will immediately become active, and the old API key will be
+        invalidated. Make sure to update your application configuration with the new
+        API key after calling this method.
+
+        Returns:
+            dict: A dictionary containing the API response with the following keys:
+                - api_key (str): The newly generated API key
+
+        Raises:
+            PassInfoAPIError: If there is an error communicating with the API
+            ValidationError: If the current API credentials are invalid
+
+        Example:
+            >>> client = PassInfoSDKClient(api_key="old-key", client_id="client-123")
+            >>> response = client.renew_api_key()
+            >>> if response.get('api_key'):
+            ...     new_key = response['new_api_key']
+            ...     print(f"New API key generated: {new_key}")
+            ... else:
+            ...     print("Failed to generate new API key")
+
+        Note:
+            - After generating a new API key, you'll need to reinitialize the client
+              with the new key for subsequent API calls
+            - It's recommended to store the new API key securely and update any
+              environment variables or configuration files accordingly
+        """
+        try:
+            response = client._make_request(
+                method='POST',
+                endpoint='v1/user/renew_api_key'
+            )
+            return response
+        except Exception:
+            return ''
     

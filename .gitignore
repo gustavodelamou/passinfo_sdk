@@ -7,3 +7,15 @@ tests
 script.py
 .pytest_cache
 assets
+*/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.vscode/
+.idea/
+dist/
+build/
+*.egg-info/
+*.example

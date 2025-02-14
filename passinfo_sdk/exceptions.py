@@ -51,5 +51,15 @@ class PassInfoAPIError(PassInfoSDKError):
     """
     
     def __init__(self, message, status_code):
+        """Initialize a new PassInfoAPIError instance.
+
+        Args:
+            message (str): A human-readable error message describing what went wrong
+                with the API request. This message should be clear and informative
+                to help developers understand and fix the issue.
+            status_code (int): The HTTP status code associated with the error.
+                This code indicates the type of error that occurred during the
+                API request (e.g., 400 for client errors, 500 for server errors).
+        """
         super().__init__(message)
         self.status_code = status_code

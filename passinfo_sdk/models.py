@@ -117,7 +117,7 @@ class PassInfoAPI:
         try:
             response = client._make_request(
                 method='POST',
-                endpoint='v1/contact/create',
+                endpoint='v1/contact/add_contact',
                 data=data
             )
             if response.get('success', False):
@@ -149,9 +149,9 @@ class PassInfoAPI:
         try:
             response = client._make_request(
                 method='GET',
-                endpoint='v1/groupe/get_all_my_groups'
+                endpoint='v1/groupe/get_all_my_groupes'
             )
-            return response.get('groups', [])
+            return response
         except Exception:
             return []
     
@@ -215,7 +215,7 @@ class PassInfoAPI:
                 method='GET',
                 endpoint='v1/user/get_solde'
             )
-            return response.get('credits', 0)
+            return response.get('solde', 0)
         except Exception:
             return 0
     
@@ -276,7 +276,7 @@ class PassInfoAPI:
         try:
             response = client._make_request(
                 method='GET',
-                endpoint='v1/contact/list',
+                endpoint='v1/contact/all_my_contacts',
                 params=params
             )
             contacts_data = response.get('contacts', [])

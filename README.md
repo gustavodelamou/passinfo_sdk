@@ -126,6 +126,8 @@ The method returns a dictionary containing:
 - `successful_sends`: Number of messages successfully queued for delivery
 - `failed_sends`: Number of messages that failed to queue
 
+ 
+
 #### Best Practices
 - Keep the contact list size reasonable to avoid timeouts
 - Validate all phone numbers before sending
@@ -232,6 +234,133 @@ try:
 except PassInfoAPIError as e:
     print(f"Error {e.status_code}: {e.message}")
 ```
+
+### Get SMS Credit Balance
+
+Check the remaining SMS credit balance for your account:
+
+```python
+try:
+    remaining_credits = client.get_sms_count()
+    print(f"You have {remaining_credits} SMS credits remaining")
+except PassInfoAPIError as e:
+    print(f"Error checking SMS balance: {e}")
+```
+
+#### Returns
+- `int`: The number of SMS credits remaining in the account. Returns 0 if the request fails or if there are no credits available.
+
+#### Best Practices
+- Implement regular balance checks to ensure sufficient credits
+- Set up low balance alerts in your application
+- Handle potential API errors gracefully
+- Consider implementing automatic credit top-up mechanisms
+- Monitor credit usage patterns for capacity planning
+
+ 
+### Renew API Key
+
+Rotate your API key for enhanced security using the renew_api_key method. This operation invalidates your current API key and generates a new one:
+
+```python
+try:
+    response = client.renew_api_key()
+    if response.get('api_key'):
+        new_key = response['api_key']
+        print(f"New API key generated successfully")
+        # Update your configuration with the new key
+    else:
+        print("Failed to generate new API key")
+except PassInfoAPIError as e:
+    print(f"Error renewing API key: {e}")
+```
+
+#### Returns
+- `dict`: Contains the new API key in the response
+  - `api_key` (str): The newly generated API key
+
+#### Best Practices
+- Schedule regular key rotations (e.g., every 90 days)
+- Implement proper key transition periods
+- Store new keys securely (e.g., environment variables)
+- Update all application instances with new key
+- Maintain backup access during rotation
+- Log all key rotation events
+
+#### Implementation Guidelines
+1. **Preparation**
+   - Back up current configuration
+   - Plan maintenance window if needed
+   - Ensure all systems are ready for update
+
+2. **Execution**
+   - Generate new API key
+   - Validate new key functionality
+   - Update configuration files/variables
+   - Restart affected services if required
+
+3. **Verification**
+   - Test API connectivity with new key
+   - Monitor for any authentication errors
+   - Verify all systems are functioning
+
+4. **Rollback Plan**
+   - Keep old key temporarily accessible
+   - Document rollback procedures
+   - Set up monitoring for issues
+
+#### Security Considerations
+- Never log or display full API keys
+- Use secure channels for key distribution
+- Implement least-privilege access
+- Monitor for unauthorized key usage
+- Set up alerts for key-related events
+
+#### Example Implementation
+```python
+from passinfo_sdk import PassInfoSDKClient
+from passinfo_sdk.exceptions import PassInfoAPIError
+import os
+
+def rotate_api_key(client):
+    try:
+        # Generate new key
+        response = client.renew_api_key()
+        if not response.get('api_key'):
+            raise ValueError("No API key in response")
+
+        new_key = response['api_key']
+        
+        # Validate new key
+        test_client = PassInfoSDKClient(
+            api_key=new_key,
+            client_id=client.client_id
+        )
+        
+        # Test new key
+        test_client.get_sms_count()
+        
+        # Update configuration
+        update_api_key_config(new_key)
+        
+        print("API key rotated successfully")
+        return True
+        
+    except PassInfoAPIError as e:
+        print(f"Error rotating API key: {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return False
+
+def update_api_key_config(new_key):
+    # Update environment variable
+    os.environ['PASSINFO_API_KEY'] = new_key
+    
+    # Update configuration file
+    # Implement your configuration update logic here
+    pass
+
 
 ## Best Practices
    
@@ -423,104 +552,3 @@ except PassInfoAPIError as e:
    except PassInfoAPIError as e:
        print(f"Status check failed: {e}")
    ```
-
-### Getting Help
-
-If you're unable to resolve an issue:
-
-1. Gather Information
-   - Error messages and codes
-   - Request/response details
-   - SDK version information
-   - Relevant code snippets
-
-2. Contact Support
-   - Visit the PassInfo dashboard
-   - Submit detailed support tickets
-   - Check API documentation
-   - Join developer community forums
-
-3. Common Support Channels
-   - Technical documentation
-   - API status page
-   - Developer forums
-   - Email support
-
-
-
-#### Contact Management
-- `create_contact(first_name, last_name, phone_number) -> Contact`
-  - Creates a new contact in the PassInfo platform
-  - Returns a Contact instance with platform-assigned ID
-  - Raises `ValidationError` for invalid input
-
-###### Group Operations
-- `get_user_groups() -> List[Group]`
-  - Retrieves all groups associated with your account
-  - Returns a list of Group objects with details
-
-- `add_contact_to_group(contact_id, group_id) -> bool`
-  - Adds a contact to a specified group
-  - Returns True on success, False on failure
-  - Raises `PassInfoAPIError` for invalid IDs
-
-###### Account Management
-- `get_sms_count() -> int`
-  - Returns remaining SMS credits in your account
-  - Updates in real-time after each message send
-
-- `renew_api_key() -> str`
-  - Generates and returns a new API key
-  - Automatically updates the client's credentials
-
-###### Contact Listing
-- `get_contacts_list(page=1, limit=10) -> PaginatedResponse`
-  - Retrieves a paginated list of contacts
-  - Returns a PaginatedResponse object containing:
-    - `contacts`: List of Contact objects
-    - `total`: Total number of contacts
-    - `page`: Current page number
-    - `total_pages`: Total number of pages
-
-###### User Management
-- `add_users_to_contact(contact_id, user_ids) -> bool`
-  - Links multiple users to a contact
-  - Useful for multi-user access control
-  - Returns True on success
-
-##### Error Handling
-
-The PassInfoAPI class provides comprehensive error handling:
-
-```python
-from passinfo_sdk.exceptions import PassInfoAPIError, ValidationError
-
-try:
-    # Attempt to create a contact
-    contact = api.create_contact(
-        first_name="Jane",
-        last_name="Smith",
-        phone_number="invalid-number"
-    )
-except ValidationError as e:
-    print(f"Invalid input: {e}")
-except PassInfoAPIError as e:
-    print(f"API error: {e.status_code} - {e.message}")
-```
-
-##### Best Practices
-
-1. Contact Management
-   - Validate phone numbers before creation
-   - Use bulk operations for multiple contacts
-   - Implement proper error handling
-
-2. Group Operations
-   - Cache group information when appropriate
-   - Verify group existence before adding contacts
-   - Monitor group sizes for optimal performance
-
-3. Resource Management
-   - Monitor SMS credit balance regularly
-   - Implement credit alerts for low balance
-   - Use pagination for large contact lists
