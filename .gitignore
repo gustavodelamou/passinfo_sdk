@@ -1,0 +1,9 @@
+.venv
+tests
+build
+dist
+passinfo_sdk.egg-info
+tests
+script.py
+.pytest_cache
+assets
