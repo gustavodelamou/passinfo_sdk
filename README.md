@@ -361,7 +361,7 @@ def update_api_key_config(new_key):
     # Implement your configuration update logic here
     pass
 
-
+```
 ## Best Practices
    
 ### Message Handling
