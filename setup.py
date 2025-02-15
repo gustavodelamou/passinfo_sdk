@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="passinfo_sdk",
-    version="1.0.1",
+    version="1.0.2",
     author="Jean Gustave DELAMOU",
     author_email="jeangustave1996@gmail.com",
     description="A Python SDK for seamless integration with PassInfo API, enabling secure message delivery and contact management",

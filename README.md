@@ -3,7 +3,7 @@
 
 Un SDK Python puissant et intuitif pour une intégration transparente avec l'API PasseInfo, permettant une livraison de messages rapide, fiable et sécurisée à travers plusieurs canaux. Ce SDK simplifie les opérations de messagerie complexes en un code propre et maintenable, en faisant le choix idéal pour les entreprises recherchant des solutions de communication robustes.
 
-## Description
+## 1️⃣ Description
 
 PasseInfo SDK est une bibliothèque Python puissante et conviviale conçue pour simplifier l'intégration des services de messagerie PasseInfo dans vos applications. Ce SDK abstrait la complexité des interactions directes avec l'API, offrant une interface propre et intuitive pour l'envoi de messages à travers différents canaux.
 
@@ -19,7 +19,7 @@ Les principaux avantages de l'utilisation du SDK PasseInfo incluent :
 
 Que vous envoyiez des messages transactionnels, des communications marketing ou des notifications système, PasseInfo SDK fournit les outils et la flexibilité dont vous avez besoin pour implémenter des fonctionnalités de messagerie robustes dans vos applications Python.
 
-## Fonctionnalités
+## 2️⃣ Fonctionnalités
 
 - Envoi de messages individuels aux contacts
 - Envoi en masse de messages à plusieurs contacts simultanément
@@ -30,22 +30,22 @@ Que vous envoyiez des messages transactionnels, des communications marketing ou 
 - Formatage et validation automatiques des requêtes
 - Authentification API sécurisée
 
-## Installation
+## 3️⃣ Installation
 
 Le SDK PasseInfo peut être facilement installé via pip, le gestionnaire de paquets Python. Le SDK est compatible avec tous les principaux systèmes d'exploitation (Windows, macOS, Linux) et nécessite un minimum de dépendances. Avant l'installation, assurez-vous d'avoir Python 3.6 ou une version supérieure installée sur votre système.
 
-### Prérequis
+### 3️⃣.1️⃣ Prérequis
 
 - Python 3.6 ou supérieur
 - Bibliothèque `requests`
 
-### Installation via pip
+### 3️⃣.2️⃣ Installation via pip
 
 ```bash
 pip install passinfo-sdk
 ```
 
-## Démarrage Rapide
+## 4️⃣ Démarrage Rapide
 
 Cette section vous guidera à travers les étapes essentielles pour commencer à utiliser le SDK PasseInfo dans votre application. Vous apprendrez à initialiser le client, envoyer des messages à des contacts individuels, des groupes, et gérer efficacement plusieurs destinataires. Avant de commencer, assurez-vous d'avoir :
 
@@ -53,7 +53,7 @@ Cette section vous guidera à travers les étapes essentielles pour commencer à
 - Obtenu vos identifiants API depuis le tableau de bord PasseInfo
 - Une compréhension basique de la programmation Python
 
-### Initialiser le Client
+### 4️⃣.1️⃣ Initialiser le Client
 
 Créez une nouvelle instance du client SDK PasseInfo avec vos identifiants API. Vous pouvez obtenir ces identifiants depuis votre tableau de bord PasseInfo :
 
@@ -70,7 +70,7 @@ client = PassInfoSDKClient(
 )
 ```
 
-### Envoyer un Message Unique
+### 4️⃣.2️⃣ Envoyer un Message Unique
 
 Envoyez un message à un contact individuel. Cette méthode fournit un moyen simple de livrer des messages à des destinataires spécifiques :
 
@@ -84,23 +84,23 @@ print(response)
 # Exemple de sortie : {"status": "success", "message": "123"}
 ```
 
-#### Paramètres
+#### 4️⃣.2️⃣.1️⃣ Paramètres
 - `message` (str) : Le contenu de votre message. Gardez-le clair et concis.
 - `contact` (str) : Le numéro de téléphone du destinataire dans un format valide (ex : "622000001").
 - `sender_name` (str) : Votre ID d'expéditeur que les destinataires verront.
 
-#### Réponse
+#### 4️⃣.2️⃣.2️⃣ Réponse
 La méthode renvoie un dictionnaire contenant :
 - `status` : Statut de succès ou d'échec de l'opération d'envoi
 - `message` : Identifiant unique pour le suivi du message
 
-#### Meilleures Pratiques
+#### 4️⃣.2️⃣.3️⃣ Meilleures Pratiques
 - Validez les numéros de téléphone avant l'envoi
 - Gardez le contenu du message dans les limites de caractères
 - Stockez le message_id pour le suivi des livraisons
 - Gérez les erreurs API potentielles en utilisant des blocs try-except
 
-### Envoi de Messages en Masse
+### 4️⃣.3️⃣ Envoi de Messages en Masse
 
 Envoyez un message à plusieurs contacts simultanément. Cette méthode fournit un moyen efficace de livrer le même message à plusieurs destinataires en un seul appel API :
 
@@ -115,26 +115,24 @@ print(response)
 # Exemple de sortie : {"status": "success", "successful_sends": 3, "failed_sends": 0}
 ```
 
-#### Paramètres
+#### 4️⃣.3️⃣.1️⃣ Paramètres
 - `message` (str) : Le contenu de votre message qui sera envoyé à tous les destinataires.
 - `sender_name` (str) : Votre ID d'expéditeur qui apparaîtra comme expéditeur pour tous les destinataires.
 - `contacts` (list) : Une liste de numéros de téléphone auxquels envoyer le message.
 
-#### Réponse
+#### 4️⃣.3️⃣.2️⃣ Réponse
 La méthode renvoie un dictionnaire contenant :
 - `status` : Statut de succès ou d'échec de l'opération d'envoi en masse
 - `successful_sends` : Nombre de messages mis en file d'attente avec succès pour la livraison
 - `failed_sends` : Nombre de messages qui n'ont pas pu être mis en file d'attente
 
- 
-
-#### Meilleures Pratiques
+#### 4️⃣.3️⃣.3️⃣ Meilleures Pratiques
 - Gardez la taille de la liste de contacts raisonnable pour éviter les délais d'attente
 - Validez tous les numéros de téléphone avant l'envoi
 - Surveillez la réponse pour les envois échoués
 - Implémentez une logique de réessai pour les livraisons échouées
 
-### Envoi de Message à un Groupe
+### 4️⃣.4️⃣ Envoi de Message à un Groupe
 
 Envoyez un message à un groupe prédéfini de contacts. Cette méthode vous permet de livrer efficacement des messages à des groupes qui ont été créés et gérés via votre tableau de bord PasseInfo :
 
@@ -148,24 +146,24 @@ print(response)
 # Exemple de sortie : {"status": "success", "group_size": 50, "messages_queued": 50}
 ```
 
-#### Paramètres
+#### 4️⃣.4️⃣.1️⃣ Paramètres
 - `message` (str) : Le contenu de votre message qui sera envoyé à tous les membres du groupe.
 - `sender_name` (str) : Votre ID d'expéditeur qui apparaîtra comme expéditeur pour tous les membres du groupe.
 - `group_id` (str) : L'identifiant unique de votre groupe cible (disponible dans le tableau de bord PasseInfo).
 
-#### Réponse
+#### 4️⃣.4️⃣.2️⃣ Réponse
 La méthode renvoie un dictionnaire contenant :
 - `status` : Statut de succès ou d'échec de l'opération d'envoi au groupe
 - `group_size` : Nombre total de contacts dans le groupe
 - `messages_queued` : Nombre de messages mis en file d'attente avec succès pour la livraison
 
-#### Meilleures Pratiques
+#### 4️⃣.4️⃣.3️⃣ Meilleures Pratiques
 - Vérifiez l'existence du groupe avant l'envoi
 - Gardez les tailles de groupe gérables
 - Surveillez le statut de livraison pour les grands groupes
 - Tenez compte des fuseaux horaires pour le timing des messages
 
-### Obtenir le Statut d'un Message
+### 4️⃣.5️⃣ Obtenir le Statut d'un Message
 
 Suivez le statut de livraison d'un message unique en utilisant son ID unique :
 
@@ -177,20 +175,20 @@ print(response)
 # Exemple de sortie : {"status": "sent", "message_id": "1234567890"}
 ```
 
-#### Paramètres
+#### 4️⃣.5️⃣.1️⃣ Paramètres
 - `message_id` (str) : L'identifiant unique du message à suivre, retourné lors de l'envoi du message.
 
-#### Réponse
+#### 4️⃣.5️⃣.2️⃣ Réponse
 La méthode renvoie un dictionnaire contenant :
 - `status` : Statut actuel du message (ex : 'pending', 'sent', 'failed')
 - `message_id` : L'identifiant unique du message suivi
 
-#### Meilleures Pratiques
+#### 4️⃣.5️⃣.3️⃣ Meilleures Pratiques
 - Stockez les ID des messages pour les communications importantes
 - Implémentez une interrogation du statut à intervalles appropriés
 - Gérez tous les statuts possibles dans votre application
 
-### Obtenir le Statut des Messages en Masse
+### 4️⃣.6️⃣ Obtenir le Statut des Messages en Masse
 
 Suivez le statut de livraison de plusieurs messages envoyés en lot :
 
@@ -202,23 +200,23 @@ print(response)
 # Exemple de sortie : {"status": "processing", "successful": 45, "failed": 2, "pending": 3}
 ```
 
-#### Paramètres
+#### 4️⃣.6️⃣.1️⃣ Paramètres
 - `batch_id` (str) : L'identifiant unique du lot de messages à suivre.
 
-#### Réponse
+#### 4️⃣.6️⃣.2️⃣ Réponse
 La méthode renvoie un dictionnaire contenant :
 - `status` : Statut général du lot
 - `successful` : Nombre de messages livrés avec succès
 - `failed` : Nombre de livraisons échouées
 - `pending` : Nombre de messages encore en file d'attente
 
-#### Meilleures Pratiques
+#### 4️⃣.6️⃣.3️⃣ Meilleures Pratiques
 - Stockez les ID de lot pour les opérations en masse
 - Implémentez une logique de réessai pour les messages échoués
 - Surveillez les taux et les modèles de livraison
 - Configurez des alertes pour les taux d'échec élevés
 
-## Gestion des Erreurs
+## 5️⃣ Gestion des Erreurs
 
 Le SDK fournit une gestion complète des erreurs via l'exception `PassInfoAPIError` :
 
@@ -235,7 +233,7 @@ except PassInfoAPIError as e:
     print(f"Erreur {e.status_code}: {e.message}")
 ```
 
-### Vérifier le Solde de Crédits SMS
+### 5️⃣.1️⃣ Vérifier le Solde de Crédits SMS
 
 Vérifiez le solde de crédits SMS restant pour votre compte :
 
@@ -247,10 +245,10 @@ except PassInfoAPIError as e:
     print(f"Erreur lors de la vérification du solde SMS : {e}")
 ```
 
-#### Retourne
+#### 5️⃣.2️⃣ Retourne
 - `int` : Le nombre de crédits SMS restants sur le compte. Retourne 0 si la requête échoue ou s'il n'y a pas de crédits disponibles.
 
-#### Meilleures Pratiques
+#### 5️⃣.3️⃣ Meilleures Pratiques
 - Implémentez des vérifications régulières du solde pour assurer des crédits suffisants
 - Configurez des alertes de solde bas dans votre application
 - Gérez les erreurs API potentielles avec élégance
@@ -258,7 +256,7 @@ except PassInfoAPIError as e:
 - Surveillez les modèles d'utilisation des crédits pour la planification de la capacité
 
  
-### Renouvellement de la Clé API
+### 5️⃣.4️⃣ Renouvellement de la Clé API
 
 Faites pivoter votre clé API pour une sécurité renforcée en utilisant la méthode renew_api_key. Cette opération invalide votre clé API actuelle et en génère une nouvelle :
 
@@ -275,7 +273,7 @@ except PasseInfoAPIError as e:
     print(f"Erreur lors du renouvellement de la clé API : {e}")
 ```
 
-#### Retours
+#### 5️⃣.5️⃣ Retours
 - `dict` : Contient la nouvelle clé API dans la réponse
   - `api_key` (str) : La clé API nouvellement générée
 
@@ -379,4 +377,27 @@ def update_api_key_config(new_key):
 - Implémenter la mise en cache des données fréquemment utilisées
 - Optimiser les tailles de lots pour les opérations en masse
 - Surveiller et ajuster les limites de requêtes concurrentes
-- Utiliser des opérations asynchrones lorsque
+- Utiliser des opérations asynchrones lorsque possible
+- Mettre en place une gestion efficace des timeouts
+- Optimiser les requêtes pour minimiser la latence
+- Implémenter des mécanismes de compression des données
+- Utiliser des connexions persistantes
+- Mettre en cache les résultats des requêtes fréquentes
+
+### Sécurité et Conformité
+
+- Implémenter le chiffrement des données sensibles
+- Suivre les meilleures pratiques de sécurité pour le stockage des identifiants
+- Respecter les réglementations sur la protection des données
+- Mettre en place une journalisation sécurisée
+- Effectuer des audits réguliers de sécurité
+- Maintenir des sauvegardes sécurisées des données critiques
+
+### Support et Maintenance
+
+- Maintenir une documentation à jour
+- Fournir des exemples de code pour les cas d'utilisation courants
+- Offrir un support technique réactif
+- Mettre à jour régulièrement les dépendances
+- Suivre les bonnes pratiques de versioning
+- Communiquer clairement les changements d'API
