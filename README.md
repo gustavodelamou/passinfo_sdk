@@ -1,226 +1,226 @@
-# PassInfo SDK
-# ![PASSEINFO](https://api.passinfo.net/v1/content/logo.png "PassInfo Logo")
+# PasseInfo SDK
+# ![PASSEINFO](https://api.passinfo.net/v1/content/logo.png "PasseInfo Logo")
 
-A powerful and intuitive Python SDK for seamless integration with the PassInfo API, enabling fast, reliable, and secure message delivery across multiple channels. This SDK simplifies complex messaging operations into clean, maintainable code, making it the ideal choice for businesses seeking robust communication solutions.
+Un SDK Python puissant et intuitif pour une intégration transparente avec l'API PasseInfo, permettant une livraison de messages rapide, fiable et sécurisée à travers plusieurs canaux. Ce SDK simplifie les opérations de messagerie complexes en un code propre et maintenable, en faisant le choix idéal pour les entreprises recherchant des solutions de communication robustes.
 
 ## Description
 
-PassInfo SDK is a powerful and user-friendly Python library designed to simplify the integration of PassInfo messaging services into your applications. This SDK abstracts the complexity of direct API interactions, offering a clean and intuitive interface for sending messages through various channels.
+PasseInfo SDK est une bibliothèque Python puissante et conviviale conçue pour simplifier l'intégration des services de messagerie PasseInfo dans vos applications. Ce SDK abstrait la complexité des interactions directes avec l'API, offrant une interface propre et intuitive pour l'envoi de messages à travers différents canaux.
 
-The SDK handles all the necessary API authentication, request formatting, and response parsing, allowing developers to focus on implementing their messaging logic rather than dealing with low-level API details. It provides robust error handling, automatic retries for failed requests, and comprehensive logging capabilities.
+Le SDK gère toute l'authentification API nécessaire, le formatage des requêtes et l'analyse des réponses, permettant aux développeurs de se concentrer sur l'implémentation de leur logique de messagerie plutôt que de gérer les détails de bas niveau de l'API. Il fournit une gestion robuste des erreurs, des tentatives automatiques pour les requêtes échouées et des capacités complètes de journalisation.
 
-Key advantages of using PassInfo SDK include:
-- **Simplified Integration**: Easy-to-use methods for all messaging operations
-- **Type Safety**: Built-in validation for all API parameters
-- **Flexible Configuration**: Customizable settings for different use cases
-- **Production Ready**: Battle-tested in high-volume messaging scenarios
-- **Well Documented**: Comprehensive documentation with practical examples
-- **Efficient Resource Usage**: Optimized for handling both single and bulk message operations
+Les principaux avantages de l'utilisation du SDK PasseInfo incluent :
+- **Intégration Simplifiée** : Méthodes faciles à utiliser pour toutes les opérations de messagerie
+- **Sécurité des Types** : Validation intégrée pour tous les paramètres API
+- **Configuration Flexible** : Paramètres personnalisables pour différents cas d'utilisation
+- **Prêt pour la Production** : Testé en conditions réelles dans des scénarios à haut volume
+- **Bien Documenté** : Documentation complète avec des exemples pratiques
+- **Utilisation Efficace des Ressources** : Optimisé pour gérer les messages uniques et en masse
 
-Whether you're sending transactional messages, marketing communications, or system notifications, PassInfo SDK provides the tools and flexibility you need to implement robust messaging functionality in your Python applications.
+Que vous envoyiez des messages transactionnels, des communications marketing ou des notifications système, PasseInfo SDK fournit les outils et la flexibilité dont vous avez besoin pour implémenter des fonctionnalités de messagerie robustes dans vos applications Python.
 
-## Features
+## Fonctionnalités
 
-- Send single messages to individual contacts
-- Send bulk messages to multiple contacts simultaneously
-- Send messages to predefined contact groups
-- Track message delivery status for single and bulk messages
-- Monitor batch message status and delivery reports
-- Comprehensive error handling
-- Automatic request formatting and validation
-- Secure API authentication
+- Envoi de messages individuels aux contacts
+- Envoi en masse de messages à plusieurs contacts simultanément
+- Envoi de messages à des groupes de contacts prédéfinis
+- Suivi du statut de livraison des messages individuels et en masse
+- Surveillance des statuts des lots de messages et rapports de livraison
+- Gestion complète des erreurs
+- Formatage et validation automatiques des requêtes
+- Authentification API sécurisée
 
 ## Installation
 
-PassInfo SDK can be easily installed using pip, Python's package installer. The SDK is compatible with all major operating systems (Windows, macOS, Linux) and requires minimal dependencies. Before installing, ensure you have Python 3.6 or higher installed on your system.
+Le SDK PasseInfo peut être facilement installé via pip, le gestionnaire de paquets Python. Le SDK est compatible avec tous les principaux systèmes d'exploitation (Windows, macOS, Linux) et nécessite un minimum de dépendances. Avant l'installation, assurez-vous d'avoir Python 3.6 ou une version supérieure installée sur votre système.
 
-### Requirements
+### Prérequis
 
-- Python 3.6 or higher
-- `requests` library
+- Python 3.6 ou supérieur
+- Bibliothèque `requests`
 
-### Install via pip
+### Installation via pip
 
 ```bash
 pip install passinfo-sdk
 ```
 
-## Quick Start
+## Démarrage Rapide
 
-This section will guide you through the essential steps to start using the PassInfo SDK in your application. You'll learn how to initialize the client, send messages to individual contacts, groups, and handle multiple recipients efficiently. Before proceeding, ensure you have:
+Cette section vous guidera à travers les étapes essentielles pour commencer à utiliser le SDK PasseInfo dans votre application. Vous apprendrez à initialiser le client, envoyer des messages à des contacts individuels, des groupes, et gérer efficacement plusieurs destinataires. Avant de commencer, assurez-vous d'avoir :
 
-- Installed the PassInfo SDK package
-- Obtained your API credentials from the PassInfo dashboard
-- Basic understanding of Python programming
+- Installé le package SDK PasseInfo
+- Obtenu vos identifiants API depuis le tableau de bord PasseInfo
+- Une compréhension basique de la programmation Python
 
-### Initialize the Client
+### Initialiser le Client
 
-Create a new instance of the PassInfo SDK client with your API credentials. You can obtain these credentials from your PassInfo dashboard:
+Créez une nouvelle instance du client SDK PasseInfo avec vos identifiants API. Vous pouvez obtenir ces identifiants depuis votre tableau de bord PasseInfo :
 
-> **Note**: Keep your API credentials secure and never expose them in your code. Use environment variables or secure configuration management for production deployments.
+> **Note** : Gardez vos identifiants API sécurisés et ne les exposez jamais dans votre code. Utilisez des variables d'environnement ou une gestion de configuration sécurisée pour les déploiements en production.
 
-Here's how to initialize the client:
+Voici comment initialiser le client :
 
 ```python
 from passinfo_sdk import PassInfoSDKClient
 
 client = PassInfoSDKClient(
-    api_key="your_api_key",    # Your PassInfo API key
-    client_id="your_client_id" # Your PassInfo client ID
+    api_key="your_api_key",    # Votre clé API PasseInfo
+    client_id="your_client_id" # Votre ID client PasseInfo
 )
 ```
 
-### Send a Single Message
+### Envoyer un Message Unique
 
-Send a message to an individual contact. This method provides a simple way to deliver messages to specific recipients:
+Envoyez un message à un contact individuel. Cette méthode fournit un moyen simple de livrer des messages à des destinataires spécifiques :
 
 ```python
 response = client.send_message(
-    message="Hello World",           # Message content
-    contact="phoneNumber",          # Recipient's phone number
-    sender_name="senderName"       # Name that appears as the sender
+    message="Hello World",           # Contenu du message
+    contact="phoneNumber",          # Numéro de téléphone du destinataire
+    sender_name="senderName"       # Nom qui apparaît comme expéditeur
 )
 print(response)
-# Example output: {"status": "success", "message": "123"}
+# Exemple de sortie : {"status": "success", "message": "123"}
 ```
 
-#### Parameters
-- `message` (str): The content of your message. Keep it clear and concise.
-- `contact` (str): The recipient's phone number in a valid format (e.g., "622000001").
-- `sender_name` (str): Your sender ID that recipients will see.
+#### Paramètres
+- `message` (str) : Le contenu de votre message. Gardez-le clair et concis.
+- `contact` (str) : Le numéro de téléphone du destinataire dans un format valide (ex : "622000001").
+- `sender_name` (str) : Votre ID d'expéditeur que les destinataires verront.
 
-#### Response
-The method returns a dictionary containing:
-- `status`: Success or failure status of the send operation
-- `message`: Unique identifier for tracking the message
+#### Réponse
+La méthode renvoie un dictionnaire contenant :
+- `status` : Statut de succès ou d'échec de l'opération d'envoi
+- `message` : Identifiant unique pour le suivi du message
 
-#### Best Practices
-- Validate phone numbers before sending
-- Keep message content within character limits
-- Store message_id for delivery tracking
-- Handle potential API errors using try-except blocks
+#### Meilleures Pratiques
+- Validez les numéros de téléphone avant l'envoi
+- Gardez le contenu du message dans les limites de caractères
+- Stockez le message_id pour le suivi des livraisons
+- Gérez les erreurs API potentielles en utilisant des blocs try-except
 
-### Send Bulk Messages
+### Envoi de Messages en Masse
 
-Send a message to multiple contacts simultaneously. This method provides an efficient way to deliver the same message to multiple recipients in a single API call:
+Envoyez un message à plusieurs contacts simultanément. Cette méthode fournit un moyen efficace de livrer le même message à plusieurs destinataires en un seul appel API :
 
 ```python
 contacts = ["622000001", "622000002", "622000003"]
 response = client.send_message_bulk(
-    message="Hello Everyone",        # Message content
-    sender_name="senderName",       # Name that appears as the sender
-    contacts=contacts               # List of recipient phone numbers
+    message="Hello Everyone",        # Contenu du message
+    sender_name="senderName",       # Nom qui apparaît comme expéditeur
+    contacts=contacts               # Liste des numéros de téléphone des destinataires
 )
 print(response)
-# Example output: {"status": "success", "successful_sends": 3, "failed_sends": 0}
+# Exemple de sortie : {"status": "success", "successful_sends": 3, "failed_sends": 0}
 ```
 
-#### Parameters
-- `message` (str): The content of your message that will be sent to all recipients.
-- `sender_name` (str): Your sender ID that will appear as the sender to all recipients.
-- `contacts` (list): A list of phone numbers to send the message to.
+#### Paramètres
+- `message` (str) : Le contenu de votre message qui sera envoyé à tous les destinataires.
+- `sender_name` (str) : Votre ID d'expéditeur qui apparaîtra comme expéditeur pour tous les destinataires.
+- `contacts` (list) : Une liste de numéros de téléphone auxquels envoyer le message.
 
-#### Response
-The method returns a dictionary containing:
-- `status`: Success or failure status of the bulk send operation
-- `successful_sends`: Number of messages successfully queued for delivery
-- `failed_sends`: Number of messages that failed to queue
+#### Réponse
+La méthode renvoie un dictionnaire contenant :
+- `status` : Statut de succès ou d'échec de l'opération d'envoi en masse
+- `successful_sends` : Nombre de messages mis en file d'attente avec succès pour la livraison
+- `failed_sends` : Nombre de messages qui n'ont pas pu être mis en file d'attente
 
  
 
-#### Best Practices
-- Keep the contact list size reasonable to avoid timeouts
-- Validate all phone numbers before sending
-- Monitor the response for failed sends
-- Implement retry logic for failed deliveries
+#### Meilleures Pratiques
+- Gardez la taille de la liste de contacts raisonnable pour éviter les délais d'attente
+- Validez tous les numéros de téléphone avant l'envoi
+- Surveillez la réponse pour les envois échoués
+- Implémentez une logique de réessai pour les livraisons échouées
 
-### Send Message to Group
+### Envoi de Message à un Groupe
 
-Send a message to a predefined group of contacts. This method allows you to efficiently deliver messages to groups that have been created and managed through your PassInfo dashboard:
+Envoyez un message à un groupe prédéfini de contacts. Cette méthode vous permet de livrer efficacement des messages à des groupes qui ont été créés et gérés via votre tableau de bord PasseInfo :
 
 ```python
 response = client.send_message_group(
-    message="Hello Group",           # Message content
-    sender_name="senderName",       # Name that appears as the sender
-    group_id="groupId"             # ID of the target group
+    message="Hello Group",           # Contenu du message
+    sender_name="senderName",       # Nom qui apparaît comme expéditeur
+    group_id="groupId"             # ID du groupe cible
 )
 print(response)
-# Example output: {"status": "success", "group_size": 50, "messages_queued": 50}
+# Exemple de sortie : {"status": "success", "group_size": 50, "messages_queued": 50}
 ```
 
-#### Parameters
-- `message` (str): The content of your message that will be sent to all group members.
-- `sender_name` (str): Your sender ID that will appear as the sender to all group members.
-- `group_id` (str): The unique identifier of your target group (available in PassInfo dashboard).
+#### Paramètres
+- `message` (str) : Le contenu de votre message qui sera envoyé à tous les membres du groupe.
+- `sender_name` (str) : Votre ID d'expéditeur qui apparaîtra comme expéditeur pour tous les membres du groupe.
+- `group_id` (str) : L'identifiant unique de votre groupe cible (disponible dans le tableau de bord PasseInfo).
 
-#### Response
-The method returns a dictionary containing:
-- `status`: Success or failure status of the group send operation
-- `group_size`: Total number of contacts in the group
-- `messages_queued`: Number of messages successfully queued for delivery
+#### Réponse
+La méthode renvoie un dictionnaire contenant :
+- `status` : Statut de succès ou d'échec de l'opération d'envoi au groupe
+- `group_size` : Nombre total de contacts dans le groupe
+- `messages_queued` : Nombre de messages mis en file d'attente avec succès pour la livraison
 
-#### Best Practices
-- Verify group existence before sending
-- Keep group sizes manageable
-- Monitor delivery status for large groups
-- Consider message timing for different time zones
+#### Meilleures Pratiques
+- Vérifiez l'existence du groupe avant l'envoi
+- Gardez les tailles de groupe gérables
+- Surveillez le statut de livraison pour les grands groupes
+- Tenez compte des fuseaux horaires pour le timing des messages
 
-### Get Message Status
+### Obtenir le Statut d'un Message
 
-Track the delivery status of a single message using its unique message ID:
+Suivez le statut de livraison d'un message unique en utilisant son ID unique :
 
 ```python
 response = client.get_message_status(
-    message_id="1234567890"        # Unique message identifier
+    message_id="1234567890"        # Identifiant unique du message
 )
 print(response)
-# Example output: {"status": "sent", "message_id": "1234567890"}
+# Exemple de sortie : {"status": "sent", "message_id": "1234567890"}
 ```
 
-#### Parameters
-- `message_id` (str): The unique identifier of the message to track, returned when the message was sent.
+#### Paramètres
+- `message_id` (str) : L'identifiant unique du message à suivre, retourné lors de l'envoi du message.
 
-#### Response
-The method returns a dictionary containing:
-- `status`: Current status of the message (e.g., 'pending', 'sent', 'failed')
-- `message_id`: The unique identifier of the tracked message
+#### Réponse
+La méthode renvoie un dictionnaire contenant :
+- `status` : Statut actuel du message (ex : 'pending', 'sent', 'failed')
+- `message_id` : L'identifiant unique du message suivi
 
-#### Best Practices
-- Store message IDs for important communications
-- Implement status polling with appropriate intervals
-- Handle all possible status values in your application
+#### Meilleures Pratiques
+- Stockez les ID des messages pour les communications importantes
+- Implémentez une interrogation du statut à intervalles appropriés
+- Gérez tous les statuts possibles dans votre application
 
-### Get Bulk Message Status
+### Obtenir le Statut des Messages en Masse
 
-Track the delivery status of multiple messages sent in a batch:
+Suivez le statut de livraison de plusieurs messages envoyés en lot :
 
 ```python
 response = client.get_message_status_bulk(
-    batch_id="1234567890"         # Unique batch identifier
+    batch_id="1234567890"         # Identifiant unique du lot
 )
 print(response)
-# Example output: {"status": "processing", "successful": 45, "failed": 2, "pending": 3}
+# Exemple de sortie : {"status": "processing", "successful": 45, "failed": 2, "pending": 3}
 ```
 
-#### Parameters
-- `batch_id` (str): The unique identifier of the message batch to track.
+#### Paramètres
+- `batch_id` (str) : L'identifiant unique du lot de messages à suivre.
 
-#### Response
-The method returns a dictionary containing:
-- `status`: Overall status of the batch
-- `successful`: Number of successfully delivered messages
-- `failed`: Number of failed deliveries
-- `pending`: Number of messages still in queue
+#### Réponse
+La méthode renvoie un dictionnaire contenant :
+- `status` : Statut général du lot
+- `successful` : Nombre de messages livrés avec succès
+- `failed` : Nombre de livraisons échouées
+- `pending` : Nombre de messages encore en file d'attente
 
-#### Best Practices
-- Store batch IDs for bulk operations
-- Implement retry logic for failed messages
-- Monitor delivery rates and patterns
-- Set up alerts for high failure rates
+#### Meilleures Pratiques
+- Stockez les ID de lot pour les opérations en masse
+- Implémentez une logique de réessai pour les messages échoués
+- Surveillez les taux et les modèles de livraison
+- Configurez des alertes pour les taux d'échec élevés
 
-## Error Handling
+## Gestion des Erreurs
 
-The SDK provides comprehensive error handling through the `PassInfoAPIError` exception:
+Le SDK fournit une gestion complète des erreurs via l'exception `PassInfoAPIError` :
 
 ```python
 from passinfo_sdk.exceptions import PassInfoAPIError
@@ -232,323 +232,151 @@ try:
         sender_name="senderName"
     )
 except PassInfoAPIError as e:
-    print(f"Error {e.status_code}: {e.message}")
+    print(f"Erreur {e.status_code}: {e.message}")
 ```
 
-### Get SMS Credit Balance
+### Vérifier le Solde de Crédits SMS
 
-Check the remaining SMS credit balance for your account:
+Vérifiez le solde de crédits SMS restant pour votre compte :
 
 ```python
 try:
     remaining_credits = client.get_sms_count()
-    print(f"You have {remaining_credits} SMS credits remaining")
+    print(f"Il vous reste {remaining_credits} crédits SMS")
 except PassInfoAPIError as e:
-    print(f"Error checking SMS balance: {e}")
+    print(f"Erreur lors de la vérification du solde SMS : {e}")
 ```
 
-#### Returns
-- `int`: The number of SMS credits remaining in the account. Returns 0 if the request fails or if there are no credits available.
+#### Retourne
+- `int` : Le nombre de crédits SMS restants sur le compte. Retourne 0 si la requête échoue ou s'il n'y a pas de crédits disponibles.
 
-#### Best Practices
-- Implement regular balance checks to ensure sufficient credits
-- Set up low balance alerts in your application
-- Handle potential API errors gracefully
-- Consider implementing automatic credit top-up mechanisms
-- Monitor credit usage patterns for capacity planning
+#### Meilleures Pratiques
+- Implémentez des vérifications régulières du solde pour assurer des crédits suffisants
+- Configurez des alertes de solde bas dans votre application
+- Gérez les erreurs API potentielles avec élégance
+- Envisagez d'implémenter des mécanismes de recharge automatique de crédits
+- Surveillez les modèles d'utilisation des crédits pour la planification de la capacité
 
  
-### Renew API Key
+### Renouvellement de la Clé API
 
-Rotate your API key for enhanced security using the renew_api_key method. This operation invalidates your current API key and generates a new one:
+Faites pivoter votre clé API pour une sécurité renforcée en utilisant la méthode renew_api_key. Cette opération invalide votre clé API actuelle et en génère une nouvelle :
 
 ```python
 try:
     response = client.renew_api_key()
     if response.get('api_key'):
         new_key = response['api_key']
-        print(f"New API key generated successfully")
-        # Update your configuration with the new key
+        print(f"Nouvelle clé API générée avec succès")
+        # Mettez à jour votre configuration avec la nouvelle clé
     else:
-        print("Failed to generate new API key")
-except PassInfoAPIError as e:
-    print(f"Error renewing API key: {e}")
+        print("Échec de la génération de la nouvelle clé API")
+except PasseInfoAPIError as e:
+    print(f"Erreur lors du renouvellement de la clé API : {e}")
 ```
 
-#### Returns
-- `dict`: Contains the new API key in the response
-  - `api_key` (str): The newly generated API key
+#### Retours
+- `dict` : Contient la nouvelle clé API dans la réponse
+  - `api_key` (str) : La clé API nouvellement générée
 
-#### Best Practices
-- Schedule regular key rotations (e.g., every 90 days)
-- Implement proper key transition periods
-- Store new keys securely (e.g., environment variables)
-- Update all application instances with new key
-- Maintain backup access during rotation
-- Log all key rotation events
+#### Meilleures Pratiques
+- Planifier des rotations régulières des clés (par exemple, tous les 90 jours)
+- Mettre en œuvre des périodes de transition appropriées
+- Stocker les nouvelles clés de manière sécurisée (par exemple, variables d'environnement)
+- Mettre à jour toutes les instances d'application avec la nouvelle clé
+- Maintenir un accès de secours pendant la rotation
+- Journaliser tous les événements de rotation des clés
 
-#### Implementation Guidelines
-1. **Preparation**
-   - Back up current configuration
-   - Plan maintenance window if needed
-   - Ensure all systems are ready for update
+#### Directives d'Implémentation
+1. **Préparation**
+   - Sauvegarder la configuration actuelle
+   - Planifier une fenêtre de maintenance si nécessaire
+   - S'assurer que tous les systèmes sont prêts pour la mise à jour
 
-2. **Execution**
-   - Generate new API key
-   - Validate new key functionality
-   - Update configuration files/variables
-   - Restart affected services if required
+2. **Exécution**
+   - Générer une nouvelle clé API
+   - Valider la fonctionnalité de la nouvelle clé
+   - Mettre à jour les fichiers/variables de configuration
+   - Redémarrer les services affectés si nécessaire
 
-3. **Verification**
-   - Test API connectivity with new key
-   - Monitor for any authentication errors
-   - Verify all systems are functioning
+3. **Vérification**
+   - Tester la connectivité API avec la nouvelle clé
+   - Surveiller les erreurs d'authentification
+   - Vérifier que tous les systèmes fonctionnent
 
-4. **Rollback Plan**
-   - Keep old key temporarily accessible
-   - Document rollback procedures
-   - Set up monitoring for issues
+4. **Plan de Retour en Arrière**
+   - Garder l'ancienne clé temporairement accessible
+   - Documenter les procédures de retour en arrière
+   - Mettre en place une surveillance des problèmes
 
-#### Security Considerations
-- Never log or display full API keys
-- Use secure channels for key distribution
-- Implement least-privilege access
-- Monitor for unauthorized key usage
-- Set up alerts for key-related events
+#### Considérations de Sécurité
+- Ne jamais journaliser ou afficher les clés API complètes
+- Utiliser des canaux sécurisés pour la distribution des clés
+- Mettre en œuvre un accès avec privilèges minimaux
+- Surveiller l'utilisation non autorisée des clés
+- Configurer des alertes pour les événements liés aux clés
 
-#### Example Implementation
+#### Exemple d'Implémentation
 ```python
-from passinfo_sdk import PassInfoSDKClient
-from passinfo_sdk.exceptions import PassInfoAPIError
+from passinfo_sdk import PasseInfoSDKClient
+from passinfo_sdk.exceptions import PasseInfoAPIError
 import os
 
 def rotate_api_key(client):
     try:
-        # Generate new key
+        # Générer une nouvelle clé
         response = client.renew_api_key()
         if not response.get('api_key'):
-            raise ValueError("No API key in response")
+            raise ValueError("Pas de clé API dans la réponse")
 
         new_key = response['api_key']
         
-        # Validate new key
-        test_client = PassInfoSDKClient(
+        # Valider la nouvelle clé
+        test_client = PasseInfoSDKClient(
             api_key=new_key,
             client_id=client.client_id
         )
         
-        # Test new key
+        # Tester la nouvelle clé
         test_client.get_sms_count()
         
-        # Update configuration
+        # Mettre à jour la configuration
         update_api_key_config(new_key)
         
-        print("API key rotated successfully")
+        print("Clé API pivotée avec succès")
         return True
         
-    except PassInfoAPIError as e:
-        print(f"Error rotating API key: {e}")
+    except PasseInfoAPIError as e:
+        print(f"Erreur lors de la rotation de la clé API : {e}")
         return False
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        print(f"Erreur inattendue : {e}")
         return False
 
 def update_api_key_config(new_key):
-    # Update environment variable
+    # Mettre à jour la variable d'environnement
     os.environ['PASSINFO_API_KEY'] = new_key
     
-    # Update configuration file
-    # Implement your configuration update logic here
+    # Mettre à jour le fichier de configuration
+    # Implémentez votre logique de mise à jour de configuration ici
     pass
 
 ```
-## Best Practices
+## Meilleures Pratiques
    
-### Message Handling
+### Gestion des Messages
 
-- Implement message queuing for high-volume scenarios
-- Use batch processing for bulk messages to optimize performance
-- Set up proper retry mechanisms with exponential backoff
-- Implement message delivery status tracking
-- Handle message priority based on business requirements
-- Validate message content before sending
+- Implémenter une file d'attente de messages pour les scénarios à haut volume
+- Utiliser le traitement par lots pour optimiser les performances
+- Mettre en place des mécanismes de réessai avec backoff exponentiel
+- Implémenter le suivi du statut de livraison des messages
+- Gérer la priorité des messages selon les besoins métier
+- Valider le contenu des messages avant l'envoi
 
-### Performance Optimization
+### Optimisation des Performances
 
-- Use connection pooling for better resource management
-- Implement caching for frequently used data
-- Optimize batch sizes for bulk operations
-- Monitor and adjust concurrent request limits
-- Use asynchronous operations where applicable
-- Implement proper timeout handling
-
-### Integration Best Practices
-
-- Follow the singleton pattern for client initialization
-- Implement proper dependency injection
-- Use environment variables for configuration
-- Set up comprehensive logging
-- Implement proper error boundaries
-- Use proper exception handling
-
-### API Rate Limits
-
-- Be mindful of API rate limits when sending bulk messages
-- Implement appropriate error handling for rate limit responses
-- Consider using exponential backoff for retries
-
-### Security
-
-- Keep your API credentials secure and never expose them in your code
-- Use environment variables for storing sensitive information
-- Regularly rotate your API keys
-
-### Message Content
-
-- Keep messages concise and clear
-- Respect character limits for messages
-- Include opt-out instructions when required
-
-### Testing and Monitoring
-
-- Implement comprehensive unit tests
-- Set up integration tests for critical paths
-- Monitor message delivery rates and latency
-- Track and analyze error patterns
-- Set up alerts for critical failures
-- Maintain test coverage for new features
-
-## API Reference
-
-### PassInfoSDKClient
-
-#### Parameters
-
-- `api_key` (str): Your API key for authentication
-- `client_id` (str/int): Your client ID
-- `base_url` (str, optional): API base URL. Defaults to "https://api.passinfo.net"
-
-#### Methods
-
-- `send_message(message, contact, sender_name)`: Send a single message
-  - `message` (str): Message content
-  - `contact` (str): Recipient's phone number
-  - `sender_name` (str): Sender's display name
-
-- `send_message_bulk(message, sender_name, contacts)`: Send messages to multiple contacts
-  - `message` (str): Message content
-  - `sender_name` (str): Sender's display name
-  - `contacts` (list): List of recipient phone numbers
-
-- `send_message_group(message, sender_name, group_id)`: Send a message to a group
-  - `message` (str): Message content
-  - `sender_name` (str): Sender's display name
-  - `group_id` (str): Target group ID
-
-## Troubleshooting
- 
-### Common Issues
-
-1. Authentication Errors
-   - Verify your API key and client ID are correct
-   - Check if your API key is active
-   - Ensure proper formatting of credentials
-   - Common causes:
-     * Expired API key
-     * Incorrect client ID format
-     * Missing or malformed authentication headers
-   - Solutions:
-     * Regenerate API key from PassInfo dashboard
-     * Verify credentials using test endpoints
-     * Check API key permissions and scope
-
-2. Rate Limiting
-   - Implement proper request throttling
-   - Add delay between bulk message requests
-   - Monitor your API usage
-   - Common scenarios:
-     * Too many requests in a short time period
-     * Exceeding daily/monthly message quota
-     * Concurrent request limits reached
-   - Best practices:
-     * Implement exponential backoff
-     * Use batch processing for large volumes
-     * Monitor rate limit headers in responses
-
-3. Message Delivery Issues
-   - Verify recipient phone numbers are properly formatted
-   - Check sender name restrictions
-   - Monitor delivery status responses
-   - Common problems:
-     * Invalid phone number format
-     * Recipient opt-out or blocking
-     * Network carrier restrictions
-   - Troubleshooting steps:
-     * Validate phone numbers before sending
-     * Check delivery status regularly
-     * Review error codes and descriptions
-
-4. API Connectivity
-   - Network connectivity problems
-   - DNS resolution issues
-   - SSL/TLS certificate validation
-   - Resolution steps:
-     * Verify network connectivity
-     * Check DNS settings
-     * Ensure proper SSL certificate handling
-     * Test with API status endpoints
-
-5. Request Timeout Issues
-   - Long-running bulk operations
-   - Network latency problems
-   - Server processing delays
-   - Recommendations:
-     * Set appropriate timeout values
-     * Break large requests into smaller batches
-     * Implement retry mechanisms
-
-6. Data Validation Errors
-   - Invalid message format
-   - Incorrect parameter types
-   - Missing required fields
-   - Solutions:
-     * Validate data before sending
-     * Check API documentation for requirements
-     * Use SDK validation methods
-
-### Debugging Tips
-
-1. Enable Debug Logging
-   ```python
-   import logging
-   logging.basicConfig(level=logging.DEBUG)
-   ```
-
-2. Test with Minimal Example
-   ```python
-   # Simple test to verify connectivity
-   try:
-       response = client.send_message(
-           message="Test message",
-           contact="1234567890",
-           sender_name="Test"
-       )
-       print(f"Success: {response}")
-   except PassInfoAPIError as e:
-       print(f"Error: {e}")
-   ```
-
-3. Check Response Headers
-   - Monitor rate limit information
-   - Track request IDs for support
-   - Verify API versions
-
-4. Use Status Endpoints
-   ```python
-   # Check API status
-   try:
-       status = client.get_message_status("message_id")
-       print(f"Message status: {status}")
-   except PassInfoAPIError as e:
-       print(f"Status check failed: {e}")
-   ```
+- Utiliser le pooling de connexions pour une meilleure gestion des ressources
+- Implémenter la mise en cache des données fréquemment utilisées
+- Optimiser les tailles de lots pour les opérations en masse
+- Surveiller et ajuster les limites de requêtes concurrentes
+- Utiliser des opérations asynchrones lorsque
